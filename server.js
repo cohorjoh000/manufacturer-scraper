@@ -7,17 +7,15 @@ const app = express();
 app.get("/scrape", async (req, res) => {
   try {
     const url = req.query.url;
-    if (!url) {
-      return res.status(400).json({ error: "Missing URL parameter" });
-    }
+    if (!url) return res.status(400).json({ error: "Missing URL parameter" });
 
-    const executablePath = await chromium.executablePath;
+    const executablePath = await chromium.executablePath();
 
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath,
-      headless: chromium.headless
+      headless: chromium.headless,
     });
 
     const page = await browser.newPage();
@@ -28,9 +26,9 @@ app.get("/scrape", async (req, res) => {
 
     res.json({ html });
   } catch (error) {
-    console.error("Scraper error:", error);
+    console.error(error);
     res.status(500).json({ error: error.message });
   }
 });
 
-app.listen(3000, () => console.log("Scraper server running on port 3000"));
+app.listen(3000, () => console.log("Scraper running on port 3000"));
