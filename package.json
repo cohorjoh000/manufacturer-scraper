@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "express": "latest",
-    "puppeteer-core": "latest"
+    "puppeteer-core": "latest",
+    "@sparticuz/chromium": "latest"
   }
 }
