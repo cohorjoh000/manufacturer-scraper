@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer-core";
+const puppeteer = require("puppeteer-core");
 
 export default async function handler(req, res) {
   try {
