@@ -1,12 +1,12 @@
 {
   "functions": {
     "api/*.js": {
-      "runtime": "edge"
+      "runtime": "nodejs18.x",
+      "memory": 1536,
+      "maxDuration": 30
     }
   },
-  "build": {
-    "env": {
-      "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true"
-    }
+  "env": {
+    "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true"
   }
 }
