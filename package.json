@@ -2,11 +2,7 @@
   "name": "manufacturer-scraper",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "start": "node server.js"
-  },
   "dependencies": {
-    "express": "latest",
     "puppeteer-core": "latest",
     "@sparticuz/chromium": "117.0.0"
   }
