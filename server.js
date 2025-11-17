@@ -1,4 +1,5 @@
 import express from "express";
+import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer-core";
 
 const app = express();
@@ -10,10 +11,13 @@ app.get("/scrape", async (req, res) => {
       return res.status(400).json({ error: "Missing URL parameter" });
     }
 
+    const executablePath = await chromium.executablePath;
+
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: process.env.CHROME_PATH || "/usr/bin/google-chrome",
-      headless: "new"
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath,
+      headless: chromium.headless
     });
 
     const page = await browser.newPage();
@@ -22,7 +26,7 @@ app.get("/scrape", async (req, res) => {
     const html = await page.content();
     await browser.close();
 
-    res.json({ html: html });
+    res.json({ html });
   } catch (error) {
     console.error("Scraper error:", error);
     res.status(500).json({ error: error.message });
