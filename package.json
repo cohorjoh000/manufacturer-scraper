@@ -1,5 +1,10 @@
 {
   "name": "manufacturer-scraper",
   "version": "1.0.0",
-  "type": "module"
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  }
 }
